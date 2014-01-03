@@ -1,4 +1,4 @@
-var APP = {};
+var APP = APP||{};
 
 APP.Main = (function() {
 	var self = {},
@@ -14,69 +14,66 @@ APP.Main = (function() {
     	}
 	}
 
-	self.wipeBody = function() {
-		var children = body.firstChild;
-
-		while( children ) {
-			body.removeChild( children );
-			children = body.firstChild;
-		}
-
-		return self;
-	}
-
 	self.getObject = function(objectId) {
 		return document.getElementById(objectId);
 	}
 
 	self.createObject = function(objectType, objectParent, objectId, objectClass) {
-		var parent = document.getElementById(objectParent);
-		var element = document.createElement(objectType);
+		var parent = document.getElementById(objectParent),
+			element = document.createElement(objectType);
 		element.className = objectClass;
 		element.id = objectId;
 		parent.appendChild(element);
 
-		return self;
+		return element;
 	}
 
-	self.require = function(url) {
-		var scriptElement= document.createElement('script');
-		scriptElement.type = 'text/javascript';
-		scriptElement.src= url;
-		head.appendChild(scriptElement);
+	self.isJSON = function(str) {
+		if (str === '') return false;
 
-		return self;
+		str = str.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@');
+		str = str.replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']');
+		str = str.replace(/(?:^|:|,)(?:\s*\[)+/g, '');
+
+		return (/^[\],:{}\s]*$/).test(str);
 	}
 
-	self.getJSON = function(url, onload) {
+	self.getJSON = function(url, callback) {
 		var xhr = new XMLHttpRequest();
 		xhr.open('GET', url, true);
-		xhr.onreadystatechange = onload;
-		xhr.send();
 
-		return self;
+		xhr.onreadystatechange = function(response){
+			var content = response.currentTarget;
+
+			if (content.readyState == 4) {
+				if (content.status == 200 && self.isJSON(content.responseText)) {
+					var data = JSON.parse(content.responseText);
+					console.log('Loaded: ', url, data);
+					callback(data);
+				} else {
+					console.error('Failed to load: ', url, data);
+				}
+			}
+		};
+		xhr.send();
 	}
 
 	self.onLoadConfig = function(result) {
-		if (result.currentTarget.readyState == 4) {
-			config = JSON.parse(result.currentTarget.responseText);
-			console.log('Config loaded! - ', config);
-			self.
-				wipeBody().
-				createObject('canvas', 'container', 'board', 'wide').
-				require('js/creature.js').
-				require('js/map.js');
-		}
+		config = result;
+		body.innerHTML = '';
+
+		self.createObject('canvas', 'container', 'board', 'wide');
+		APP.Map.init();
 	}
 
-	self.onLoad = function() {
+	self.init = function() {
 		head = document.getElementsByTagName('head').item(0),
 		body = document.getElementById('container');
 
 		self.getJSON('api/config.json', self.onLoadConfig);
 	}
 
-	window.onload = self.onLoad;
-
 	return self;
 })();
+
+window.onload = APP.Main.init;

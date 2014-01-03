@@ -1,5 +1,6 @@
 {
 	"tileSize": 32,
 	"volume": 50,
-	"effects": true
+	"effects": true,
+	"delay": 200
 }

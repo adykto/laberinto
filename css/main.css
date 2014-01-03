@@ -15,8 +15,9 @@ body, html {
 	width: 100%;
 }
 
-.creature {
+.sprite {
 	background-position: 0 0;
+	cursor: pointer;
 	height: 32px;
 	left: 0;
 	position: absolute;

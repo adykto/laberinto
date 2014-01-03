@@ -1,0 +1,29 @@
+body, html {
+	height: 100%;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	position: relative;
+	width: 100%;
+}
+
+.wide {
+	background: #131313;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+.creature {
+	background-position: 0 0;
+	height: 32px;
+	left: 0;
+	position: absolute;
+	top:0;
+	width: 32px;
+
+	transition: -webkit-transform;
+	transition-duration: 0.3s;
+	transition-timing-function: linear;
+}

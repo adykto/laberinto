@@ -1,0 +1,12 @@
+1.- load a json map
+2.- dump the map in frontend
+3.- use tiles to draw the map
+
+4.- place a player and move it around with cursor keys
+5.- place some items
+6.- place some npcs
+7.- place some mobs
+8.- place some warps
+9.- create dynamic maps
+10.- create a server to retrieve pieces of the map
+11.- add some rules to the movement

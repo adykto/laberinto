@@ -1,0 +1,52 @@
+{
+	"id": "jfantasma",
+	"name": "Juanito Fantasma",
+	"race": "human",
+	"parent": "system",
+	"sprites": {
+		"tileset": "/tiles/holder.png",
+		"width": 32,
+		"height": 32,
+		"frames": 3,
+		"poses": {
+			"walk": [0,0,3],
+			"stand": [0,0,3]
+		}
+	},
+	"location": {
+		"map": "arnkalor",
+		"x": 10,
+		"y": 10,
+		"action": "walk"
+	},
+	"stats": {
+		"hp": 100,
+		"sp": 0,
+		"dex": 1,
+		"str": 1,
+		"int": 1,
+		"agi": 1,
+		"maxsp": 100,
+		"maxhp": 100
+	},
+	"skills": {
+		"attack": 1,
+		"run": 1,
+		"throw": 1
+	},
+	"quests": [
+		"arnkalor/exit",
+		"arnkalor/treasure"
+	],
+	"inventory": {
+		"0":1,
+		"1":2,
+		"2":9,
+		"5":1
+		},
+	"friends": [
+		"nobody",
+		"server",
+		"myself"
+	]
+}

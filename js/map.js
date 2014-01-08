@@ -2,24 +2,30 @@ var APP = APP||{};
 
 APP.Map = (function() {
 	var self = {},
-		context = null,
+		map = null,
 		tileset = null,
 		data = null;
 
 	self.onLoadMap = function(response) {
+		APP.Loader.set(30);
 		data = response;
-
 		tileset = new Image();
 		tileset.src = data.tileset;
-		tileset.onload = self.onResize;
-		APP.Controls.init();
+		tileset.onload = self.onTileLoad;
+	}
 
+	self.onTileLoad = function() {
+		APP.Loader.set(90);
+		//APP.DOM.get('container').innerHTML = '';
+		map = APP.DOM.put('canvas', 'container', 'board', 'wide').getContext('2d');
 		window.onresize = self.onResize;
+		self.onResize();
+		APP.Controls.init();
 	}
 
 	self.onResize = function() {
-		context.canvas.width  = window.innerWidth;
-		context.canvas.height = window.innerHeight;
+		map.canvas.width  = window.innerWidth;
+		map.canvas.height = window.innerHeight;
 
 		for(var rows = 0; rows < data.rows; rows++) {
 			for(var cols = 0; cols < data.cols; cols++) {
@@ -31,14 +37,13 @@ APP.Map = (function() {
 					x = cols * width,
 					y = rows * height;
 
-				context.drawImage(tileset,left,top,width,height,x,y,width,height);
+				map.drawImage(tileset,left,top,width,height,x,y,width,height);
 			}
 		}
 	}
 
 	self.init = function() {
-		context = document.getElementById('board').getContext('2d');
-		APP.Main.getJSON('api/arnkalor.json', self.onLoadMap);
+		APP.JSON.load('api/arnkalor.json', self.onLoadMap);
 	}
 
 	return self;

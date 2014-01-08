@@ -7,8 +7,9 @@ APP.Controls = (function(){
 
 	self.onLoadPlayer = function(response) {
 		player = new Player(response);
-		setInterval(self.timerTick, APP.Main.getConfig('delay'));
+		setInterval(self.timerTick, APP.Config.get('delay'));
 		document.onkeydown = self.onKeyDown;
+		APP.Loader.set(100);
 	}
 
 	self.timerTick = function() {
@@ -37,7 +38,7 @@ APP.Controls = (function(){
 	}
 
 	self.init = function() {
-		APP.Main.getJSON('/api/player.json', self.onLoadPlayer);
+		APP.JSON.load('/api/player.json', self.onLoadPlayer);
 	}
 
 	return self;

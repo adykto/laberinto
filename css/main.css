@@ -1,30 +1,63 @@
+* {
+	boder: 0;
+	margin: 0;
+	padding: 0;
+}
+
 body, html {
 	height: 100%;
-	margin: 0;
 	overflow: hidden;
-	padding: 0;
 	position: relative;
 	width: 100%;
 }
 
-.wide {
-	background: #131313;
-	height: 100%;
-	margin: 0;
-	padding: 0;
-	width: 100%;
+body {
+	background: #222;
+	color: #666;
+	font-family: sans-serif;
+	font-size: 12px;
+	line-height: 20px;
 }
 
-.sprite {
-	background-position: 0 0;
-	cursor: pointer;
-	height: 32px;
-	left: 0;
-	position: absolute;
-	top:0;
-	width: 32px;
+	.wide {
+		height: 100%;
+		width: 100%;
+	}
 
-	transition: -webkit-transform;
-	transition-duration: 0.3s;
-	transition-timing-function: linear;
-}
+	.loader {
+		background: #0a0a0a;
+		background-image: linear-gradient(-45deg, #111 25%, transparent 25%, transparent 50%, #111 50%, #111 75%, transparent 75%, transparent );
+		background-size: 50px 50px;
+		border-radius: 20px;
+		box-sizing: border-box;
+		box-shadow: inset -260px 0 0 #000;
+		display: inline-block;
+		left: 50%;
+		margin: -10px -150px;
+		overflow: hidden;
+		position: absolute;
+		text-align: center;
+		top: 50%;
+		width: 300px;
+
+		-webkit-animation:move 2s linear infinite;
+	}
+
+		@-webkit-keyframes move{
+		  0% { background-position: 0 0; }
+		  100% { background-position: 50px 50px; }
+		}
+
+	.sprite {
+		background-position: 0 0;
+		cursor: pointer;
+		height: 32px;
+		left: 0;
+		position: absolute;
+		top:0;
+		width: 32px;
+
+		transition: -webkit-transform;
+		transition-duration: 0.3s;
+		transition-timing-function: linear;
+	}

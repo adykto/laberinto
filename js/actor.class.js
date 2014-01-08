@@ -5,7 +5,7 @@ Actor = function(newName) {
 		this.y = this.options.location.y;
 		this.lastX = -1;
 		this.lastY = -1;
-		this.animationPose = 0;
+		this.animationSide = 0;
 		this.animationFrame = 0;
 		this.animation = this.options.sprites.poses.walk;
 
@@ -35,25 +35,25 @@ Actor = function(newName) {
 			}
 
 			var posX = (spr.animation[0] - (spr.animationFrame * spr.options.sprites.width)),
-				posY = (spr.animation[1] + (spr.animationPose * spr.options.sprites.height));
+				posY = (spr.animation[1] + (spr.animationSide * spr.options.sprites.height));
 
 			spr.style.backgroundPositionX = posX + 'px';
 			spr.style.backgroundPositionY = posY + 'px';
 			spr.update();
-		}, 100);
+		}, spr.options.sprites.speed);
 	}
 
 	this.translate = function(newX, newY) {
 		if(newY > this.y) {
-			this.animationPose = 0;
+			this.animationSide = 0;
 		} else if(newY < this.y) {
-			this.animationPose = 1;
+			this.animationSide = 1;
 		}
 
 		if(newX > this.x) {
-			this.animationPose = 2;
+			this.animationSide = 2;
 		} else if(newX < this.x) {
-			this.animationPose = 3;
+			this.animationSide = 3;
 		}
 
 		this.x = newX;

@@ -1,6 +1,7 @@
 {
 	"id": "jfantasma",
 	"name": "Juanito Fantasma",
+	"sex": "male",
 	"race": "human",
 	"parent": "system",
 	"sprites": {
@@ -8,6 +9,7 @@
 		"width": 32,
 		"height": 32,
 		"frames": 3,
+		"speed": 100,
 		"poses": {
 			"walk": [0,0,3],
 			"stand": [0,0,3]
@@ -35,15 +37,15 @@
 		"throw": 1
 	},
 	"quests": [
-		"arnkalor/exit",
-		"arnkalor/treasure"
+		"arnkalor_exit",
+		"arnkalor_treasure"
 	],
 	"inventory": {
 		"0":1,
 		"1":2,
 		"2":9,
 		"5":1
-		},
+	},
 	"friends": [
 		"nobody",
 		"server",

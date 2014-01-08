@@ -14,6 +14,10 @@ APP.Loader = (function() {
 	self.update = function() {
 		var offset = value - element.clientWidth;
 		element.style.webkitBoxShadow = 'inset ' + offset + 'px 0 0 #000';
+
+		if(value >= total) {
+			APP.DOM.remove(element.id);
+		}
 	}
 
 	self.init = function(id, content, newTotal) {

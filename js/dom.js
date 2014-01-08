@@ -7,6 +7,12 @@ APP.DOM = (function() {
 		return document.getElementById(objectId);
 	}
 
+	self.remove = function(objectId) {
+		var elem = document.getElementById(objectId);
+
+		return elem.parentNode.removeChild(elem);
+	}
+
 	self.put = function(objectType, objectParent, objectId, objectClass) {
 		var parent = document.getElementById(objectParent),
 			element = document.createElement(objectType);

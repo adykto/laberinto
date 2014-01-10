@@ -17,14 +17,14 @@ APP.Map = (function() {
 	self.onTileLoad = function() {
 		APP.Loader.set(90);
 		map = APP.DOM.put('canvas', 'container', 'board', 'wide').getContext('2d');
-		window.onresize = self.onResize;
 		self.onResize();
 		APP.Controls.init();
+		APP.Viewport.init(self.onResize);
 	}
 
 	self.onResize = function() {
-		map.canvas.width  = window.innerWidth;
-		map.canvas.height = window.innerHeight;
+		map.canvas.width  = APP.Viewport.getWidth();
+		map.canvas.height = APP.Viewport.getHeight();
 
 		for(var rows = 0; rows < data.rows; rows++) {
 			for(var cols = 0; cols < data.cols; cols++) {

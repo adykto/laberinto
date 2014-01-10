@@ -14,6 +14,10 @@ APP.Controls = (function(){
 
 	self.timerTick = function() {
 		isMovementLocked = false;
+
+		if(APP.Viewport.isOutOfBounds(player.x, player.y)) {
+			console.log('outside bounds: ', player.x, player.y);
+		}
 	}
 
 	self.onKeyDown = function(event) {

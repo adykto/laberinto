@@ -16,7 +16,6 @@ APP.Map = (function() {
 
 	self.onTileLoad = function() {
 		APP.Loader.set(90);
-		//APP.DOM.get('container').innerHTML = '';
 		map = APP.DOM.put('canvas', 'container', 'board', 'wide').getContext('2d');
 		window.onresize = self.onResize;
 		self.onResize();

@@ -1,0 +1,11 @@
+ ✔ load a json map @done (12-12-24 23:16)
+ ✔ dump the map in frontend @done (12-12-25 23:16)
+ ✔ use tiles to draw the map @done (14-01-01 23:16)
+ ✔ place a player and move it around with cursor keys @done (14-01-06 23:16)
+ ☐ place some items
+ ☐ place some npcs
+ ☐ place some mobs
+ ☐ place some warps
+ ☐ create dynamic maps
+ ☐ create a server to retrieve pieces of the map
+ ☐ add some rules to the movement

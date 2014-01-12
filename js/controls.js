@@ -1,3 +1,4 @@
+"use strict"; "use restrict";
 var APP = APP||{};
 
 APP.Controls = (function(){
@@ -24,7 +25,7 @@ APP.Controls = (function(){
  		if(isMovementLocked === false) {
 			isMovementLocked = true;
 
-			switch (event.keyCode ) {
+			switch (event.keyCode) {
 				case 37:
 					player.translate(player.x - 1,player.y);
 					break;
@@ -36,6 +37,18 @@ APP.Controls = (function(){
 					break;
 				case 40:
 					player.translate(player.x, player.y + 1);
+					break;
+				case 87:
+					APP.Map.moveUp();
+					break;
+				case 83:
+					APP.Map.moveDown();
+					break;
+				case 65:
+					APP.Map.moveLeft();
+					break;
+				case 68:
+					APP.Map.moveRight();
 					break;
 			}
 		}

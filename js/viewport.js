@@ -1,14 +1,13 @@
+"use strict"; "use restrict";
 var APP = APP||{};
-
-// This one
 
 APP.Viewport = (function() {
 	var self = {},
 		onUpdateCallback = null,
 		height = null,
 		width = null,
-		maxX = 0,
-		maxY = 0;
+		cols = 0,
+		rows = 0;
 
 	self.getHeight = function() {
 		return height;
@@ -18,15 +17,23 @@ APP.Viewport = (function() {
 		return width;
 	}
 
+	self.getRows = function() {
+		return rows;
+	}
+
+	self.getCols = function() {
+		return cols;
+	}
+
 	self.isOutOfBounds = function(x, y) {
-		return (x < 0 || x > maxX || y < 0 || y > maxY);
+		return (x < 0 || x > cols || y < 0 || y > rows);
 	}
 
 	self.update = function() {
 		height = window.innerHeight;
 		width  = window.innerWidth;
-		maxX = Math.round(width / (APP.Config.get('tileSize'))) - 3;
-		maxY = Math.round(height / (APP.Config.get('tileSize'))) - 3;
+		cols = Math.round(width / (APP.Config.get('tileSize')));
+		rows = Math.round(height / (APP.Config.get('tileSize')));
 
 		if(onUpdateCallback != null){
 			onUpdateCallback();

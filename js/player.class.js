@@ -1,4 +1,6 @@
-Player = function(newOptions) {
+"use strict"; "use restrict";
+
+var Player = function(newOptions) {
 	this.initialize(newOptions);
 }
 

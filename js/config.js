@@ -1,3 +1,4 @@
+"use strict"; "use restrict";
 var APP = APP||{};
 
 APP.Config = (function() {

@@ -1,4 +1,5 @@
-Actor = function(newName) {
+"use strict"; "use restrict";
+var Actor = function(newName) {
 	this.initialize = function(newConfig) {
 		this.cfg = newConfig;
 		this.x = this.cfg.location.x;
